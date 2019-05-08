@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Google Font 1 - Heading Tags -->
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+    <!-- Google Font 2 - Paragraph; Misc -->
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+    <!-- Page Title -->
+    <title>Hangman, Basically.</title>
+</head>
+
+<body>
+    <!-- App Header ('Logo') -->
+    <nav class="container text-center mt-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Nav 'Brand' -->
+                <h1 class="display-4">Hangman, Basically.</h1>
+            </div>
+        </div>
+    </nav>
+    <!-- Selection Menu / Options Menu -->
+    <section class="container text-center">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <p class="btn-start lead mt-5" data-toggle="modal" data-target="#game-instructions">How to Play</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Game Modals: -->
+    <!-- Game Instructions -->
+    <div class="modal fade" id="game-instructions" tabindex="-1" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog-centered">
+            <div>
+                <div class="modal-body">
+                    <div class="p-5 ml-5 mt-4">
+                        <h2 class="text-center">How to Play!</h2>
+                        <p class="lead">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet dolor in nunc
+                            fermentum, ut commodo arcu maximus. Donec ullamcorper tincidunt elit, et volutpat tortor.
+                            Sed a ipsum ultricies, accumsan enim sed, interdum nulla. Integer nisl turpis, condimentum
+                            sit amet blandit eu, elementum quis metus. Aliquam vestibulum justo fringilla euismod
+                            tempus. Nunc dapibus efficitur felis. Suspendisse tincidunt mi in feugiat aliquam.
+                            Suspendisse sapien nisl, commodo tincidunt nunc facilisis, lobortis sollicitudin felis.
+                        </p>
+                        <!-- Modal Toggle Shortcut -->
+                        <kbd class="float-right bg-success border font-weight-bold">Esc to Exit</kbd>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <!-- Game's Core JavaScript -->
+    <script src="assets/js/game.js"></script>
+</body>
+
+</html>

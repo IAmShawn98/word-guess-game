@@ -1,0 +1,39 @@
+body {
+    /* Background Image */
+    background: url('../images/backgrounds/chalkboard-bg.jpg') no-repeat center fixed;
+    background-size: 75%;
+    /* Global Font Style */
+    font-family: 'Special Elite', cursive;
+    /* If the browser can't detect the background image, default to a black background */
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* Special Font for Headings & Displays */
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4 {
+    font-family: 'Luckiest Guy', cursive;
+}
+
+/* Menu Links - General Style */
+.btn-start {
+    font-size: 400%;
+    cursor: pointer;
+}
+.btn-start:hover {
+    font-size: 400%;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Custom Modal */
+.modal-body {
+    background-image: url('../images/props/custom-modal/dialog-body/Dialog-modal.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 520px;
+    width: 880px;
+ }
+
+.modal-dialog-centered {
+    margin-left: 30%;
+}
