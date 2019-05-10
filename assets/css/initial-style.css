@@ -15,31 +15,12 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4 {
 }
 
 /* Menu Links - General Style */
-.btn-start {
+.menu-btn {
     font-size: 400%;
     cursor: pointer;
 }
-.btn-start:hover {
+.menu-btn:hover {
     font-size: 400%;
     cursor: pointer;
     text-decoration: underline;
-}
-
-/* Custom Modal */
-.modal-body {
-    background-image: url('../images/props/custom-modal/dialog-body/Dialog-modal.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 520px;
-    width: 880px;
- }
-
-.modal-dialog-centered {
-    margin-left: 30%;
-}
-
-footer {
-    position: absolute;
-    margin-left: 43%;
-    bottom: 20px;
 }

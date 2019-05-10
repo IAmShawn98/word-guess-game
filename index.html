@@ -9,9 +9,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!-- Google Font 1 - Heading Tags -->
+    <!-- Custom Style - Initial Game Style (fonts, backgrounds, etc) -->
+    <link rel="stylesheet" href="assets/css/initial-style.css">
+    <!-- Custom Style - Custom Modal -->
+    <link rel="stylesheet" href="assets/css/custom-modal.css">
+    <!-- Custom Style - Custom Modal -->
+    <link rel="stylesheet" href="assets/css/app-footer.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!-- Google Font 1 - Heading & Displays -->
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
     <!-- Google Font 2 - Paragraph; Misc -->
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
@@ -32,22 +39,60 @@
         </nav>
     </header>
     <!-- Selection Menu / Options Menu -->
-    <section class="container text-center">
+    <section id="selectMenu" class="container text-center">
+        <!-- Game Instructions -->
         <div class="row">
             <div class="col-lg-12 text-center">
-                <p class="btn-start lead mt-5" data-toggle="modal" data-target="#modal-instructions">How to Play</p>
+                <p class="menu-btn  lead mt-5" data-toggle="modal" data-target="#modal-instructions">How to Play</p>
             </div>
         </div>
+        <!-- Play the Game -->
         <div class="row">
             <div class="col-lg-12 text-center">
-                <p class="btn-start lead">Play Now!</p>
+                <p id="startGame" class="menu-btn lead">Play Now!</p>
             </div>
         </div>
         <!-- Hangman Dancer Gif-->
         <img class="img-thumbnail" src="./assets/images/props/Misc/hangman-dancer.gif"
             alt="https://www.deviantart.com/joanshane0718" />
     </section>
+    <!-- Hangman Game -->
+    <main id="game" class="container">
+        <!-- Game Layout -->
+        <div class="row">
+            <!-- An image of the man who hangs -->
+            <div class="col-lg-6 offset-3 mt-5">
+                <img id="baseImg" class="img-thumbnail w-100" src="./assets/images/hang-states/try-1.jpg" alt="TRY-1" />
+                <!-- The Gameplay Starts Here! -->
+                <div class="card mt-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 bg-dark text-center">
+                            <p class="mt-4">You Have</p>
+                            <h1 id="userGuesses">13</h1>
+                            <p>Guesses Left</p>
+                        </div>
+                        <div class="col-md-4 bg-dark text-center">
+                            <p class="mt-4">You've Guessed</p>
+                            <h1 id="userGuesses">0</h1>
+                            <p>Letters Already</p>
+                        </div>
+                        <div class="col-md-4 bg-dark text-center">
+                            <p class="mt-4">You've Won</p>
+                            <h1 id="userGuesses">0</h1>
+                            <p>In A Row!</p>
+                        </div>
+                        <div class="col-md-12 text-dark text-center">
+                            <div class="card-body">
+                                <h5 class="card-title">Letters Used:</h5>
+                                <p id="lettersPicked" class="card-text">You haven't picked any letters yet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
+    </main>
     <!-- App Footer -->
     <footer>
         <nav class="container text-center">
@@ -57,11 +102,12 @@
     </footer>
 
 
-    <!-- Game Modals: -->
     <!-- Game Instructions -->
     <div class="modal fade" id="modal-instructions" tabindex="-1" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
-            <div>
+            <!-- Dialog Section -->
+            <section>
+                <!-- Content Section -->
                 <div class="modal-body">
                     <div class="p-5 ml-5 mt-4">
                         <h2 class="text-center">How to Play!</h2>
@@ -74,10 +120,12 @@
                             Suspendisse sapien nisl, commodo tincidunt nunc facilisis, lobortis sollicitudin felis.
                         </p>
                         <!-- Modal Toggle Shortcut -->
-                        <kbd class="float-right bg-success border font-weight-bold">Esc to Exit</kbd>
+                        <div class="modal-footer border-top-0 mb-5 mr-5">
+                            <kbd class="bg-success border font-weight-bold">Press 'Escape' to Close</kbd>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
     <!-- jQuery Library -->

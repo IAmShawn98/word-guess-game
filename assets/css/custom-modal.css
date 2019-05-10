@@ -1,0 +1,29 @@
+/* Custom Modal */
+.modal-body {
+    background-image: url('../images/props/custom-modal/dialog-body/Dialog-modal.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 520px;
+    width: 880px;
+ }
+.modal-footer {
+    position: absolute;
+    margin-left: 43%;
+    bottom: 20px;
+}
+.modal-dialog-centered {
+    margin-left: 30%;
+}
+.close {
+    font-size: 300%;
+    outline: none;
+}
+.close:focus {
+    outline: none;
+}
+/* 'Escape to Close' tag */
+kbd {
+    position: relative;
+    left: 120px;
+    top: 10px;
+}
