@@ -5,10 +5,12 @@ document.getElementById("game").style.display = "none";
 var wins = 0; // Number of wins.
 var losses = 0; // Number of losses.
 var Guesses = 13; // Number of guesses.
+var guessesMade = 0; //  Number of guesses made.
 
 // DOM storage variables.
-var userGuesses = document.getElementById("userGuesses"); // Store the users word guesses.
-var lettersPicked = document.getElementById("lettersPicked"); // Spit out the letters the user types.
+var userGuesses = document.getElementById("userGuesses"); // Store how many words are left to guess.
+var lettersPicked = document.getElementById("lettersPicked"); // Store how many letters the user guessed.
+var totalGuessCounter = document.getElementById("totalGuessCounter"); // Store the number of total letters the user guessed.
 
 // This builds the game when the user clicks play.
 function startGame() {
@@ -37,11 +39,13 @@ function Gameinit() {
 
             // Show how many guesses the user has left.
             Guesses--;
-
+            // Show how many guesses the user made.
+            guessesMade--;
             // Populate remaining user guesses.
             userGuesses.textContent = Guesses;
             // Populate all letters typed.
-            lettersPicked.textContent += userKeyPressEvent;
+            lettersPicked.textContent += userKeyPressEvent + " ";
+            
             // If the user runs out of guesses, end the game. (For Now)
             if (Guesses < 1) {
                 window.location.reload();
