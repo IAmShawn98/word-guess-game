@@ -40,12 +40,14 @@ function Gameinit() {
             // Show how many guesses the user has left.
             Guesses--;
             // Show how many guesses the user made.
-            guessesMade--;
+            guessesMade++;
             // Populate remaining user guesses.
             userGuesses.textContent = Guesses;
+            // Populate letters the user guessed.
+            totalGuessCounter.textContent = guessesMade;
             // Populate all letters typed.
             lettersPicked.textContent += userKeyPressEvent + " ";
-            
+
             // If the user runs out of guesses, end the game. (For Now)
             if (Guesses < 1) {
                 window.location.reload();
