@@ -1,30 +1,52 @@
-// Keep these elements hidden until called on.
+// Hidden Game Elements.
 document.getElementById("game").style.display = "none";
 
-// When the user clicks the 'Play Now!' button, setup the game.
+// Score Related Variables.
+var wins = 0; // Number of wins.
+var losses = 0; // Number of losses.
+var Guesses = 13; // Number of guesses.
+
+// DOM storage variables.
+var userGuesses = document.getElementById("userGuesses"); // Store the users word guesses.
+var lettersPicked = document.getElementById("lettersPicked"); // Spit out the letters the user types.
+
+// This builds the game when the user clicks play.
 function startGame() {
     document.getElementById("selectMenu").style.display = "none"; // Hide Select Menu.
     document.getElementById("game").style.display = "block"; // Show Game.
-}
 
-// Listen for 'Play Now!' button click.
+    // Starts the games key tracking and functional services.
+    Gameinit();
+}
+// Checks when the user clicks 'Play Now!'.
 document.getElementById("startGame").addEventListener("click", startGame);
 
-// Win/Loss/Guessed Variables.
-var win = 0;
-var losses = 0;
-var uGuesses = 13;
+// Initializes core game functionality when called for.
+function Gameinit() {
+    document.onkeyup = function (event) {
+        // Store the keys.
+        var userKeyPressEvent = event.key;
+        // Only listen for letters 'A' through 'Z'.
+        if (userKeyPressEvent === 'a' | userKeyPressEvent === 'b' | userKeyPressEvent === 'c' | userKeyPressEvent === 'd'
+            | userKeyPressEvent === 'e' | userKeyPressEvent === 'f' | userKeyPressEvent === 'g' | userKeyPressEvent === 'h'
+            | userKeyPressEvent === 'i' | userKeyPressEvent === 'j' | userKeyPressEvent === 'k' | userKeyPressEvent === 'l'
+            | userKeyPressEvent === 'm' | userKeyPressEvent === 'n' | userKeyPressEvent === 'o' | userKeyPressEvent === 'p'
+            | userKeyPressEvent === 'q' | userKeyPressEvent === 'r' | userKeyPressEvent === 's' | userKeyPressEvent === 't'
+            | userKeyPressEvent === 'u' | userKeyPressEvent === 'v' | userKeyPressEvent === 'w' | userKeyPressEvent === 'x'
+            | userKeyPressEvent === 'y' | userKeyPressEvent === 'z') {
 
-// Listen for guess keys.
-var userGuesses = document.getElementById("userGuesses");
+            // Show how many guesses the user has left.
+            Guesses--;
 
-// Track the users keyboard events.
-document.onkeyup = function (event) {
-    // Store the users keys.
-    var userKeyPressEvent = event.key;
-    // Log Keys for now.
-    if (userKeyPressEvent === 'a' | userKeyPressEvent === 'b' | userKeyPressEvent === 'c' | userKeyPressEvent === 'd' | userKeyPressEvent === 'e' | userKeyPressEvent === 'f' | userKeyPressEvent === 'g' | userKeyPressEvent === 'h' | userKeyPressEvent === 'i' | userKeyPressEvent === 'j' | userKeyPressEvent === 'k' | userKeyPressEvent === 'l' | userKeyPressEvent === 'm' | userKeyPressEvent === 'n' | userKeyPressEvent === 'o' | userKeyPressEvent === 'p' | userKeyPressEvent === 'q' | userKeyPressEvent === 'r' | userKeyPressEvent === 's' | userKeyPressEvent === 't' | userKeyPressEvent === 'u' | userKeyPressEvent === 'v' | userKeyPressEvent === 'w' | userKeyPressEvent === 'x' | userKeyPressEvent === 'y' | userKeyPressEvent === 'z') {
-        uGuesses--;
+            // Populate remaining user guesses.
+            userGuesses.textContent = Guesses;
+            // Populate all letters typed.
+            lettersPicked.textContent += userKeyPressEvent;
+            // If the user runs out of guesses, end the game. (For Now)
+            if (Guesses < 1) {
+                window.location.reload();
+            }
+        }
 
         // Array containing all of our hang states.
         var hang_state = new Array();
@@ -44,12 +66,5 @@ document.onkeyup = function (event) {
             baseImg.appendChild(hang_state[i]);
             document.getElementById("baseImg").src = (hang_state[i].src);
         }
-    }
-    // Push user guesses to the counter.
-    userGuesses.textContent = uGuesses;
-
-    // If the user runs out of guesses, end the game.
-    if (uGuesses < 1) {
-        window.location.reload();
     }
 }
