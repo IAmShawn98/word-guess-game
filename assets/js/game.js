@@ -1,99 +1,131 @@
-// Hidden Game Elements.
+/*
+███████████████████████████████████████████████
+██                                           ██
+██           - HIDDEN DOM ELEMENTS -         ██
+██          Objects within this range        ██
+██          are HTML elements that are       ██
+██          hidden from the players view     ██ 
+██          until the player clicks the      ██
+██             'Play Now!' button.           ██
+██                                           ██
+███████████████████████████████████████████████
+*/
+
+// Keeps the game area hidden until called on.
 document.getElementById("game").style.display = "none";
 
-// Score Related Variables.
-var wins = 0; // Number of wins.
-var losses = 0; // Number of losses.
-var Guesses = 13; // Number of guesses.
-var guessesMade = 0; //  Number of guesses made.
-var isPlayingGame = false;
-var selctedWord = "";
-var mysteryWord = [];
-// Word list for users to guess from.
-var wordList = ["rascal", "lapdog", "bootcamp", "tobyisdenzel"];
+// Listen for when the player clicks the 'Play Now!' button.
+document.getElementById("startGame").addEventListener("click", playNow);
 
-// DOM storage variables.
-var userGuesses = document.getElementById("userGuesses"); // Store how many words are left to guess.
-//var userGuesses = [];
+/*
+███████████████████████████████████████████████
+██                                           ██
+██             - Game Initializers -         ██
+██          These are the functions that     ██
+██          are responsible for building     ██
+██          out how the game should play     ██ 
+██          when a player clicks the         ██
+██              'Play Now!' button.          ██
+██                                           ██
+███████████████████████████████████████████████
+*/
 
-var lettersPicked = document.getElementById("lettersPicked"); // Store how many letters the user guessed.
-var totalGuessCounter = document.getElementById("totalGuessCounter"); // Store the number of total letters the user guessed.
-var generateRandomWord = document.getElementById("generateRandomWord"); // Store random words.
+/* ██ Set Game Variables ██ */
 
+var pGuessesLeft = 25; // Player Guesses Left.
+var pGuessTotal = 0; // Player Guesses Made.
+var pWinStreak = 0; // Player Win Tally.
 
-// This builds the game when the user clicks play.
-function startGame() {
-    document.getElementById("selectMenu").style.display = "none"; // Hide Select Menu.
-    document.getElementById("game").style.display = "block"; // Show Game.
+// This function starts up the core JavaScript that makes this a game.
+function playNow() {
+    document.getElementById("selectMenu").style.display = "none"; // Removes the selection menu.
+    document.getElementById("game").style.display = "block"; // Shows the game area.
 
-    // Starts the games key tracking and functional services.
+    // Initializes the games core code.
     Gameinit();
 }
-// Checks when the user clicks 'Play Now!'.
-document.getElementById("startGame").addEventListener("click", startGame);
 
-// Initializes core game functionality when called for.
+// Initializes core game functionality.
 function Gameinit() {
-    isPlayingGame = true;
-    // Reset all game variavles.
-    wins = 0;
-    losses = 0;
-    Guesses = 13;
-    guessesMade = 0;
-    selectedWord = wordList[Math.floor(wordList.length * Math.random())];
-    var hiddenWord = [];
 
-    // Generate the intial display of the random word.
-    for (var i = 0; i < selectedWord.length; i++) {
-        hiddenWord.push("-");
+    /* ██ New Game Variables ██ */
+    pGuessesLeft = 25;
+
+
+    /* ██ Word Array ██ */
+
+    // Create an array of words.
+    var words = ["rascal", "lapdog", "bootcamp", "tobyisdenzel"];
+    // Randomize each word.
+    var word = words[Math.floor(Math.random() * words.length)];
+    // 'Encrpyt' the random words with "_" underscores.
+    var answerArray = [];
+    for (var i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
     }
-    // Get a reference to the word element.
-    var generateRandomWord = document.getElementById("generateRandomWord");
-    
-    // Populate the hidden word.
-    generateRandomWord.textContent = hiddenWord;
+    /* ██ DOM Listeners ██ */
 
-    // Replace the "-" with the guessed letters.
-    document.getElementById("generateRandomWord").textContent = hiddenWord.join(" ");
+    // DOM - Random Word Listener.
+    var randomWord = document.getElementById("randomWord");
+    // DOM - Player Guesses Left.
+    var pGuessesRemaining = document.getElementById("pGuessesRemaining");
+    // DOM - Player Guesses Made.
+    var pGuessesTotal = document.getElementById("pGuessesTotal");
+    // DOM - Letter Guess Listener.
+    var userLetterGuesses = document.getElementById("userLetterGuesses");
+    // Measures the length of each random word.
+    var remainingLetters = word.length;
 
-    
-}
+    /* ██ Keyboard Events ██ */
 
-document.onkeyup = function (event) {
-    if (!isPlayingGame) {
-        return false;
-    }
-
-    // Store the keys.
-    var userKeyPressEvent = event.key;
-    // Only listen for letters 'A' through 'Z'.
-    if (userKeyPressEvent === 'a' | userKeyPressEvent === 'b' | userKeyPressEvent === 'c' | userKeyPressEvent === 'd'
-        | userKeyPressEvent === 'e' | userKeyPressEvent === 'f' | userKeyPressEvent === 'g' | userKeyPressEvent === 'h'
-        | userKeyPressEvent === 'i' | userKeyPressEvent === 'j' | userKeyPressEvent === 'k' | userKeyPressEvent === 'l'
-        | userKeyPressEvent === 'm' | userKeyPressEvent === 'n' | userKeyPressEvent === 'o' | userKeyPressEvent === 'p'
-        | userKeyPressEvent === 'q' | userKeyPressEvent === 'r' | userKeyPressEvent === 's' | userKeyPressEvent === 't'
-        | userKeyPressEvent === 'u' | userKeyPressEvent === 'v' | userKeyPressEvent === 'w' | userKeyPressEvent === 'x'
-        | userKeyPressEvent === 'y' | userKeyPressEvent === 'z') {
-
-        // Show how many guesses the user has left.
-        Guesses--;
-
-        // Show how many guesses the user made.
-        guessesMade++;
-
-        // Populate remaining user guesses.
-        userGuesses.textContent = Guesses;
-
-        // Populate letters the user guessed.
-        totalGuessCounter.textContent = guessesMade;
+    // Log the players keyboard.
+    document.onkeyup = function (event) {
+        // Store player key presses.
+        var userKeyStorage = event.key;
+        // Hold the players guesses for underscore population.
+        var guess = userKeyStorage;
+        // If the user picks a correct letter, replace underscore with letter.
+        for (var j = 0; j < word.length; j++) {
+            if (word[j] === guess) {
+                answerArray[j] = guess;
+            }
+        }
+        // Only listen for letters 'A' through 'Z'.
+        if (userKeyStorage === 'a' | userKeyStorage === 'b' | userKeyStorage === 'c' | userKeyStorage === 'd'
+            | userKeyStorage === 'e' | userKeyStorage === 'f' | userKeyStorage === 'g' | userKeyStorage === 'h'
+            | userKeyStorage === 'i' | userKeyStorage === 'j' | userKeyStorage === 'k' | userKeyStorage === 'l'
+            | userKeyStorage === 'm' | userKeyStorage === 'n' | userKeyStorage === 'o' | userKeyStorage === 'p'
+            | userKeyStorage === 'q' | userKeyStorage === 'r' | userKeyStorage === 's' | userKeyStorage === 't'
+            | userKeyStorage === 'u' | userKeyStorage === 'v' | userKeyStorage === 'w' | userKeyStorage === 'x'
+            | userKeyStorage === 'y' | userKeyStorage === 'z') {
 
 
-        // Populate letters to the letters guessed box.
-        lettersPicked.textContent += userKeyPressEvent + " ";
+            /* ██ HTML Page Populators ██ */
 
-        // If the user runs out of guesses, end the game. (For Now)
-        if (Guesses < 1) {
-            window.location.reload();
+            // Set Guesses Left Deductor.
+            pGuessesLeft--;
+
+            // For now, if the user runs out of guesses
+            // send them back to the title screen.
+            if (pGuessesLeft === 0) {
+                window.location.reload();
+            }
+
+            // Populate Guesses Left.
+            pGuessesRemaining.textContent = pGuessesLeft;
+
+            // Set guess total counter.
+            pGuessTotal++;
+
+            // Populate player guess total.
+            pGuessesTotal.textContent = pGuessTotal;
+
+            // Populate Random Word.
+            randomWord.textContent = answerArray.join(" ");
+
+            // Populate Key Presses.
+            userLetterGuesses.textContent += userKeyStorage + " ";
         }
     }
 }
+

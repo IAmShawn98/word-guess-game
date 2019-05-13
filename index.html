@@ -63,19 +63,19 @@
             <!-- An image of the man who hangs -->
             <div class="col-lg-6 offset-3 mt-5">
                 <!-- Random Word Display -->
-                <p id="generateRandomWord" class="lead">- - - - - - - -</p>
+                <p id="randomWord" class="lead">- - - - - - - -</p>
                 <img id="baseImg" class="img-thumbnail w-100" src="./assets/images/hang-states/try-1.jpg" alt="TRY-1" />
                 <!-- The Gameplay Starts Here! -->
                 <div class="card mt-3">
                     <div class="row no-gutters">
                         <div class="col-md-4 bg-dark text-center">
                             <p class="mt-4">You Have</p>
-                            <h1 id="userGuesses">13</h1>
+                            <h1 id="pGuessesRemaining">25</h1>
                             <p>Guesses Left</p>
                         </div>
                         <div class="col-md-4 bg-dark text-center">
                             <p class="mt-4">You've Guessed</p>
-                            <h1 id="totalGuessCounter">0</h1>
+                            <h1 id="pGuessesTotal">0</h1>
                             <p>Letters Already</p>
                         </div>
                         <div class="col-md-4 bg-dark text-center">
@@ -86,7 +86,7 @@
                         <div class="col-md-12 text-dark text-center">
                             <div class="card-body">
                                 <h5 class="card-title">Letters Used:</h5>
-                                <p id="lettersPicked" class="card-text lead"></p>
+                                <p id="userLetterGuesses" class="card-text lead"></p>
                             </div>
                         </div>
                     </div>
