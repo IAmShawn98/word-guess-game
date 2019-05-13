@@ -63,6 +63,7 @@ function Gameinit() {
     for (var i = 0; i < word.length; i++) {
         answerArray[i] = "_";
     }
+
     /* ██ DOM Listeners ██ */
 
     // DOM - Random Word Listener.
@@ -75,6 +76,9 @@ function Gameinit() {
     var userLetterGuesses = document.getElementById("userLetterGuesses");
     // Measures the length of each random word.
     var remainingLetters = word.length;
+
+    // Populate the random word to the page.
+    randomWord.textContent = answerArray.join(" ");
 
     /* ██ Keyboard Events ██ */
 
@@ -99,8 +103,17 @@ function Gameinit() {
             | userKeyStorage === 'u' | userKeyStorage === 'v' | userKeyStorage === 'w' | userKeyStorage === 'x'
             | userKeyStorage === 'y' | userKeyStorage === 'z') {
 
+            /* ██ Keyup Audio ██ */
+
+            // Default Keypress Sound.
+            var audio = new Audio('assets/audio/keypress.mp3');
+            audio.volume = 0.04; // Mp3 Volume.
+            audio.play();
 
             /* ██ HTML Page Populators ██ */
+
+            // Buffer underscores to show the players progress.
+            randomWord.textContent = answerArray.join(" ");
 
             // Set Guesses Left Deductor.
             pGuessesLeft--;
@@ -119,9 +132,6 @@ function Gameinit() {
 
             // Populate player guess total.
             pGuessesTotal.textContent = pGuessTotal;
-
-            // Populate Random Word.
-            randomWord.textContent = answerArray.join(" ");
 
             // Populate Key Presses.
             userLetterGuesses.textContent += userKeyStorage + " ";
