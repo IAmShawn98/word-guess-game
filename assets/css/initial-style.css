@@ -14,6 +14,11 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4 {
     font-family: 'Luckiest Guy', cursive;
 }
 
+/* Strikethrough text */
+label {
+    text-decoration: line-through;
+}
+
 /* Menu Links - General Style */
 .menu-btn {
     font-size: 400%;
@@ -27,7 +32,7 @@ h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4 {
 
 /* Random Word */
 #randomWord {
-    position: relative;
-    top: 110px;
+    position: absolute;
+    top: 80px;
     left: 250px;
 }

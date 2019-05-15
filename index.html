@@ -60,12 +60,11 @@
     <main id="game" class="container">
         <!-- Game Layout -->
         <div class="row">
-            <!-- An image of the man who hangs -->
             <div class="col-lg-6 offset-3 mt-5">
                 <!-- Random Word Display -->
-                <p id="randomWord" class="lead">- - - - - - - -</p>
+                <p id="randomWord" class="lead"></p>
                 <img id="baseImg" class="img-thumbnail w-100" src="./assets/images/hang-states/try-1.jpg" alt="TRY-1" />
-                <!-- The Gameplay Starts Here! -->
+                <!-- Player Stats -->
                 <div class="card mt-3">
                     <div class="row no-gutters">
                         <div class="col-md-4 bg-dark text-center">
@@ -80,7 +79,7 @@
                         </div>
                         <div class="col-md-4 bg-dark text-center">
                             <p class="mt-4">You've Won</p>
-                            <h1 id="userGuesses">0</h1>
+                            <h1 id="winStreak">0</h1>
                             <p>In A Row!</p>
                         </div>
                         <div class="col-md-12 text-dark text-center">
@@ -92,7 +91,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
     <!-- App Footer -->
@@ -118,7 +116,7 @@
                             choices. Your mission is to hang hangman because you apparently really hate this guy. When
                             you guess a correct letter hangman will progressively build out from head to toe and will
                             eventually meet his fate. Good luck, you're gonna need it!
-                            <strikethrough><strike>(Eh, probably not).</strike></strikethrough>
+                            <label>(Eh, probably not).</label>
                         </p>
                         <!-- Modal Toggle Shortcut -->
                         <div class="modal-footer border-top-0 mb-5 mr-5">
