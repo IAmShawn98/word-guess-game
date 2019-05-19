@@ -31,11 +31,6 @@ function loadNewHangman() {
     gameInit();
 }
 
-// When the user runs out of guesses, start a new game and reset all player stats.
-if (playerRemainingGuesses < 1) {
-    Gameinit();
-}
-
 // Create a function that initializes the games default stats & functionality.
 
 // Initialize new game.
@@ -107,6 +102,7 @@ function gameInit() {
                     alert("You Won!");
                     playerWon.textContent = playerGamesWon++;
                     playerRemainingGuesses = 35;
+                    answerArray = [];
                     guessArray = [];
                     matchWord = [];
                     gameInit();
@@ -115,6 +111,7 @@ function gameInit() {
                     alert("You Lost!");
                     playerLost.textContent = playerGamesLost++;
                     playerRemainingGuesses = 35;
+                    answerArray = [];
                     guessArray = [];
                     matchWord = [];
                     gameInit();
