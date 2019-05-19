@@ -57,30 +57,30 @@
             alt="https://www.deviantart.com/joanshane0718" />
     </section>
     <!-- Hangman Game -->
-    <main id="game" class="container">
+    <main style="display: none;" id="game" class="container">
         <!-- Game Layout -->
         <div class="row">
             <div class="col-lg-6 offset-3 mt-5">
                 <!-- Random Word Display -->
-                <p id="randomWord" class="lead"></p>
+                <p id="randomWordDisplay" class="lead"></p>
                 <img id="baseImg" class="img-thumbnail w-100" src="./assets/images/hang-states/try-1.jpg" alt="TRY-1" />
                 <!-- Player Stats -->
                 <div class="card mt-3">
                     <div class="row no-gutters">
                         <div class="col-md-4 bg-dark text-center">
                             <p class="mt-4">You Have</p>
-                            <h1 id="pGuessesRemaining">25</h1>
+                            <h1 id="pGuessesRemaining">35</h1>
                             <p>Guesses Left</p>
                         </div>
                         <div class="col-md-4 bg-dark text-center">
-                            <p class="mt-4">You've Guessed</p>
-                            <h1 id="pGuessesTotal">0</h1>
-                            <p>Letters Already</p>
+                            <p class="mt-4">You've Won</p>
+                            <h1 id="playerWon">0</h1>
+                            <p>Games Total</p>
                         </div>
                         <div class="col-md-4 bg-dark text-center">
-                            <p class="mt-4">You've Won</p>
-                            <h1 id="winStreak">0</h1>
-                            <p>In A Row!</p>
+                            <p class="mt-4">You've Lost</p>
+                            <h1 id="playerLost">0</h1>
+                            <p>Games Total</p>
                         </div>
                         <div class="col-md-12 text-dark text-center">
                             <div class="card-body">
@@ -100,7 +100,7 @@
             <p class="lead">&copy; A Thing By Shawn 2019</p>
         </nav>
     </footer>
-
+    
     <!-- Game Instructions -->
     <div class="modal fade" id="modal-instructions" tabindex="-1" aria-hidden="true" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
