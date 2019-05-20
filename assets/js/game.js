@@ -40,7 +40,7 @@ function gameInit() {
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["completely", "swim", "thy", "available", "mad", "herself", "label", "college", "stream", "twice", "drop", "grade", "leaf", "riding", "bow", "frighten", "article", "screen", "bare", "wheel", "teach", "general", "fairly", "evidence", "century", "thee", "happened", "phrase", "also", "image", "pan", "something", "compare", "clothes", "loss", "require", "diagram", "pine", "team", "torn", "flow", "gain", "radio", "themselves", "consonant", "stop", "rope", "scared", "plant", "burst", "treated", "exclaimed", "state", "real", "being", "circle", "center", "first", "frog", "either", "depth", "thus", "screen", "depth", "fell", "read", "lay", "younger", "organization", "southern", "tears", "lie", "sometime", "blank", "wrapped", "dirty", "including", "thy", "yesterday", "principle", "pressure", "pictured", "printed", "forty", "horn", "over", "machine", "hole", "fairly", "game", "fireplace", "pine", "lost", "bootcamp", "tobyisdenzel", "code", "javascript", "pepsi", "rascal"];
+    var wordList = ["trumpet", "steak", "healthy", "blanket", "sushi", "laugh", "cry", "wish", "code", "friends", "tobyisdenzel", "rascal", "word"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Make the cheaters feel bad about themselves.
