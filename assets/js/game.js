@@ -40,7 +40,7 @@ function gameInit() {
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["trumpet", "steak", "healthy", "blanket", "sushi", "laugh", "cry", "wish", "code", "friends", "tobyisdenzel", "rascal", "words"];
+    var wordList = ["trumpet", "steak", "healthy", "blanket", "laugh", "wish", "code", "friends", "tobyisdenzel", "rascal", "word"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Make the cheaters feel bad about themselves.
@@ -93,12 +93,10 @@ function gameInit() {
                     matchWord[j] = guess;
                     // Update the DOM to show the players progress.
                     randomWordDisplay.textContent = singleGuess.join(" ");
-                    // Place the correct letter into the guess box.
-                    userLetterGuesses.textContent += playerKeyPress + " ";
                     // Remaining guess deductor.
                     playerRemainingGuesses--;
                 }
-                if (randomWord.length === matchWord.length) {
+                if (randomWord.length == matchWord.length) {
                     alert("You Won!");
                     playerWon.textContent = playerGamesWon++;
                     playerRemainingGuesses = 35;
@@ -123,6 +121,9 @@ function gameInit() {
             pGuessesRemaining.textContent = playerRemainingGuesses;
             // Deduct by one each press.
             playerRemainingGuesses--;
+
+            // Place the correct letter into the guess box.
+            userLetterGuesses.textContent += playerKeyPress + " ";
         }
     }
 }
