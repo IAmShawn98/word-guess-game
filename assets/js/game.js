@@ -12,11 +12,9 @@ var playerLost = document.getElementById("playerLost");
 var playerRemainingGuesses = 35;
 var playerGamesLost = 1;
 var playerGamesWon = 1;
-var answerArray = [];
-var guessArray = [];
 var matchWord = [];
-
 var numLettersLeft = 0;
+
 
 // Wait for the user to click on 'Play Now!' to start 'loadNewHangman()'.
 
@@ -42,7 +40,7 @@ function gameInit() {
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["trumpet", "steak", "healthy", "blanket", "laugh", "wish", "code", "friends", "tobyisdenzel", "rascal", "word"];
+    var wordList = ["steak", "blanket", "laugh", "wish", "code", "friends", "word"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Make the cheaters feel bad about themselves.
@@ -99,13 +97,12 @@ function gameInit() {
                     playerRemainingGuesses--;
                     // Count up the number of letters are left to guess.
                     numLettersLeft++;
+
                 }
                 if (numLettersLeft === randomWord.length) {
                     alert("You Won!");
                     playerWon.textContent = playerGamesWon++;
                     playerRemainingGuesses = 35;
-                    answerArray = [];
-                    guessArray = [];
                     matchWord = [];
                     numLettersLeft = 0;
                     gameInit();
@@ -114,15 +111,12 @@ function gameInit() {
                     alert("You Lost!");
                     playerLost.textContent = playerGamesLost++;
                     playerRemainingGuesses = 35;
-                    answerArray = [];
-                    guessArray = [];
                     matchWord = [];
                     numLettersLeft = 0;
                     gameInit();
                     break;
                 }
             }
-
 
 
             // Deduct remaining guesses from the user with each letter pressed.
