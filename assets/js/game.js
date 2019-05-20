@@ -16,6 +16,8 @@ var answerArray = [];
 var guessArray = [];
 var matchWord = [];
 
+var numLettersLeft = 0;
+
 // Wait for the user to click on 'Play Now!' to start 'loadNewHangman()'.
 
 // When the user clicks on 'Play Now!', show the game area and run the 'gameInit()' function.
@@ -95,14 +97,17 @@ function gameInit() {
                     randomWordDisplay.textContent = singleGuess.join(" ");
                     // Remaining guess deductor.
                     playerRemainingGuesses--;
+                    // Count up the number of letters are left to guess.
+                    numLettersLeft++;
                 }
-                if (randomWord.length == matchWord.length) {
+                if (numLettersLeft === randomWord.length) {
                     alert("You Won!");
                     playerWon.textContent = playerGamesWon++;
                     playerRemainingGuesses = 35;
                     answerArray = [];
                     guessArray = [];
                     matchWord = [];
+                    numLettersLeft = 0;
                     gameInit();
                     break;
                 } else if (playerRemainingGuesses === 0) {
@@ -112,10 +117,13 @@ function gameInit() {
                     answerArray = [];
                     guessArray = [];
                     matchWord = [];
+                    numLettersLeft = 0;
                     gameInit();
                     break;
                 }
             }
+
+
 
             // Deduct remaining guesses from the user with each letter pressed.
             pGuessesRemaining.textContent = playerRemainingGuesses;
