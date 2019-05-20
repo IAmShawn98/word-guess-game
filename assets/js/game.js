@@ -40,7 +40,7 @@ function gameInit() {
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["trumpet", "steak", "healthy", "blanket", "sushi", "laugh", "cry", "wish", "code", "friends", "tobyisdenzel", "rascal", "word"];
+    var wordList = ["trumpet", "steak", "healthy", "blanket", "sushi", "laugh", "cry", "wish", "code", "friends", "tobyisdenzel", "rascal", "words"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Make the cheaters feel bad about themselves.
