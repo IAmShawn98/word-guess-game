@@ -68,7 +68,6 @@ function gameInit() {
         ' .Π.' + '\n' +
         '');
 
-
     // Log the players keyboard events.
     document.onkeyup = function (event) {
         // Store the players latest keypress.
@@ -94,8 +93,6 @@ function gameInit() {
                     singleGuess[j] = guess;
                     // Update the DOM to show the players progress.
                     randomWordDisplay.textContent = singleGuess.join(" ");
-                    // Remaining guess deductor.
-                    playerRemainingGuesses--;
                 }
                 if (randomWord === singleGuess.join("")) {
                     alert("You are correct, the word is '" + randomWord + "'!");
@@ -114,6 +111,11 @@ function gameInit() {
 
             // Populate remaining guesses.
             pGuessesRemaining.textContent = playerRemainingGuesses;
+            // Remaining guess deductor.
+            playerRemainingGuesses--;
+            
+            // Each time a letter is typed, put it into the guess box.
+            userLetterGuesses.textContent += playerKeyPress + " ";
         }
     }
 }
