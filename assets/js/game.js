@@ -32,7 +32,7 @@ function loadNewHangman() {
 
 // Create a function that initializes the games default stats & functionality.
 
-// Initialize new game.
+// Initialize a new game.
 function gameInit() {
 
     // Reset Used Letters.
@@ -94,17 +94,32 @@ function gameInit() {
                     // Update the DOM to show the players progress.
                     randomWordDisplay.textContent = singleGuess.join(" ");
                 }
+                // Win Condition.
                 if (randomWord === singleGuess.join("")) {
+                    // Let the player know they won.
                     alert("You are correct, the word is '" + randomWord + "'!");
+                    // Increment a win point.
                     playerWon.textContent = playerGamesWon++;
+
+                    // Reset game.
                     playerRemainingGuesses = 10;
                     gameInit();
+
+                    // Break statement execution.
                     break;
-                } else if (playerRemainingGuesses === 0) {
+                }
+                // Loss Condition.
+                if (playerRemainingGuesses === 0) {
+                    // Let the player know they lost the game.
                     alert("Better luck next time, the word is '" + randomWord + "'!");
+                    // Add a loss to the counter.
                     playerLost.textContent = playerGamesLost++;
+
+                    // Reset game.
                     playerRemainingGuesses = 10;
                     gameInit();
+
+                    // Break statement execution.
                     break;
                 }
             }
@@ -113,7 +128,7 @@ function gameInit() {
             pGuessesRemaining.textContent = playerRemainingGuesses;
             // Remaining guess deductor.
             playerRemainingGuesses--;
-            
+
             // Each time a letter is typed, put it into the guess box.
             userLetterGuesses.textContent += playerKeyPress + " ";
         }
