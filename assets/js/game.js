@@ -1,19 +1,19 @@
 // DOM Elements we want to call later.
-var selectMenu = document.getElementById("selectMenu");
-var game = document.getElementById("game");
-var randomWordDisplay = document.getElementById("randomWordDisplay");
-var pGuessesRemaining = document.getElementById("pGuessesRemaining");
-var userLetterGuesses = document.getElementById("userLetterGuesses");
-var playerWon = document.getElementById("playerWon");
-var playerLost = document.getElementById("playerLost");
-
+var selectMenu = document.getElementById("selectMenu"); // The menu containing ('How to Play' & 'Play Now!').
+var game = document.getElementById("game"); // The 'main' containing the gameplay area.
+var randomWordDisplay = document.getElementById("randomWordDisplay"); // The place the random word is populated into.
+var pGuessesRemaining = document.getElementById("pGuessesRemaining"); // The remaining number of letters the player has to guess a word.
+var userLetterGuesses = document.getElementById("userLetterGuesses"); // The area letter guesses are populated into.
+var playerWon = document.getElementById("playerWon"); // The area containing the number of times the player won a game.
+var playerLost = document.getElementById("playerLost"); // The area containing the number of times the player lost a game.
 
 // Global Game Variables.
 var playerRemainingGuesses = 10; // Player guesses remainuing.
 var playerGamesLost = 1; // Games Lost.
 var playerGamesWon = 1; // Games Won.
-var numLettersLeft = 0;
 
+// Audio Files.
+var defaultPress = new Audio('assets/audio/keypress.mp3'); // Default Key Press.
 
 // Wait for the user to click on 'Play Now!' to start 'loadNewHangman()'.
 
@@ -42,6 +42,15 @@ function gameInit() {
     var wordList = ["steak", "laugh", "wish", "code", "friends", "word"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
+    // Stores a single random word so we can populate the DOM.
+    var singleGuess = [];
+    // Hide the words with underscores.
+    for (var i = 0; i < randomWord.length; i++) {
+        singleGuess.push("_");
+    }
+    // Populate the hidden random word to the DOM.
+    randomWordDisplay.textContent = singleGuess.join(" ");
+
     // Make the cheaters feel bad about themselves.
     var feelBadArray = [
         "I caught you red handed, cheater! Just take it.",
@@ -51,20 +60,14 @@ function gameInit() {
     ];
     // Randomize the feel bad phrases.
     var randomPhrase = feelBadArray[Math.floor(Math.random() * feelBadArray.length)];
-    // Creates a little character in the console that makes the player feel bad for cheating!
+
+    // Create a little character in the console that makes the player feel bad for cheating!
     console.log("%cCHEATER ALERT!", "color: red; font-weight: bold; text-shadow: 2px 2px 10px; font-size: 200%;");
     console.log(' ಠ_ಠ' + "  " + randomPhrase + "\n" +
         ' /█──' + " " + "The word is: '" + randomWord + "'." + '\n' +
         ' .Π.' + '\n' +
         '');
-    // Stores a single random word so we can populate the DOM.
-    var singleGuess = [];
-    // Hide the words with underscores.
-    for (var i = 0; i < randomWord.length; i++) {
-        singleGuess.push("_");
-    }
-    // Populate the hidden random word to the DOM.
-    randomWordDisplay.textContent = singleGuess.join(" ");
+
 
     // Log the players keyboard events.
     document.onkeyup = function (event) {
@@ -80,10 +83,8 @@ function gameInit() {
             | playerKeyPress === 'y' | playerKeyPress === 'z') {
 
             // Default Keypress Sound.
-            var audio = new Audio('assets/audio/keypress.mp3');
-            audio.volume = 0.04; // MP3 Volume.
-            audio.play();
-
+            defaultPress.volume = 0.04; // MP3 Volume.
+            defaultPress.play();
 
             // If the player picks a correct letter, replace the underscore with the correct letter.
             var guess = playerKeyPress;
@@ -97,13 +98,13 @@ function gameInit() {
                     playerRemainingGuesses--;
                 }
                 if (randomWord === singleGuess.join("")) {
-                    alert("You Won!");
+                    alert("You are correct, the word is '" + randomWord + "'!");
                     playerWon.textContent = playerGamesWon++;
                     playerRemainingGuesses = 10;
                     gameInit();
                     break;
                 } else if (playerRemainingGuesses === 0) {
-                    alert("You Lost!");
+                    alert("Better luck next time, the word is '" + randomWord + "'!");
                     playerLost.textContent = playerGamesLost++;
                     playerRemainingGuesses = 10;
                     gameInit();
@@ -113,8 +114,6 @@ function gameInit() {
 
             // Populate remaining guesses.
             pGuessesRemaining.textContent = playerRemainingGuesses;
-            // Deduct by one each press.
-            playerRemainingGuesses--;
         }
     }
 }
