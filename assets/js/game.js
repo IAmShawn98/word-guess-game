@@ -9,10 +9,9 @@ var playerLost = document.getElementById("playerLost");
 
 
 // Global Game Variables.
-var playerRemainingGuesses = 35;
-var playerGamesLost = 1;
-var playerGamesWon = 1;
-var matchWord = [];
+var playerRemainingGuesses = 10; // Player guesses remainuing.
+var playerGamesLost = 1; // Games Lost.
+var playerGamesWon = 1; // Games Won.
 var numLettersLeft = 0;
 
 
@@ -40,7 +39,7 @@ function gameInit() {
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["steak", "blanket", "laugh", "wish", "code", "friends", "word"];
+    var wordList = ["steak", "laugh", "wish", "code", "friends", "word"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Make the cheaters feel bad about themselves.
@@ -85,47 +84,37 @@ function gameInit() {
             audio.volume = 0.04; // MP3 Volume.
             audio.play();
 
+
             // If the player picks a correct letter, replace the underscore with the correct letter.
             var guess = playerKeyPress;
             for (var j = 0; j < randomWord.length; j++) {
                 if (randomWord[j] === guess) {
+                    // Override the underscore with the correct letter.
                     singleGuess[j] = guess;
-                    matchWord[j] = guess;
                     // Update the DOM to show the players progress.
                     randomWordDisplay.textContent = singleGuess.join(" ");
                     // Remaining guess deductor.
                     playerRemainingGuesses--;
-                    // Count up the number of letters are left to guess.
-                    numLettersLeft++;
-
                 }
-                if (numLettersLeft === randomWord.length) {
+                if (randomWord === singleGuess.join("")) {
                     alert("You Won!");
                     playerWon.textContent = playerGamesWon++;
-                    playerRemainingGuesses = 35;
-                    matchWord = [];
-                    numLettersLeft = 0;
+                    playerRemainingGuesses = 10;
                     gameInit();
                     break;
                 } else if (playerRemainingGuesses === 0) {
                     alert("You Lost!");
                     playerLost.textContent = playerGamesLost++;
-                    playerRemainingGuesses = 35;
-                    matchWord = [];
-                    numLettersLeft = 0;
+                    playerRemainingGuesses = 10;
                     gameInit();
                     break;
                 }
             }
 
-
-            // Deduct remaining guesses from the user with each letter pressed.
+            // Populate remaining guesses.
             pGuessesRemaining.textContent = playerRemainingGuesses;
             // Deduct by one each press.
             playerRemainingGuesses--;
-
-            // Place the correct letter into the guess box.
-            userLetterGuesses.textContent += playerKeyPress + " ";
         }
     }
 }
