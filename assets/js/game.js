@@ -124,6 +124,9 @@ function gameInit() {
 
                     // Reset game.
                     playerRemainingGuesses = 8;
+                    // Reset Hangman.
+                    document.getElementById("baseImg").src = "./assets/images/hang-states/try-default.jpg";
+                    // Re-Initialize Game.
                     gameInit();
 
                     // Break statement execution.
