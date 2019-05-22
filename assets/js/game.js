@@ -8,7 +8,7 @@ var playerWon = document.getElementById("playerWon"); // The area containing the
 var playerLost = document.getElementById("playerLost"); // The area containing the number of times the player lost a game.
 
 // Global Game Variables.
-var playerRemainingGuesses = 10; // Player guesses remainuing.
+var playerRemainingGuesses = 8; // Player guesses remaining.
 var playerGamesLost = 1; // Games Lost.
 var playerGamesWon = 1; // Games Won.
 
@@ -35,11 +35,13 @@ function loadNewHangman() {
 // Initialize a new game.
 function gameInit() {
 
+
+
     // Reset Used Letters.
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["steak", "laugh", "wish", "code", "friends", "word"];
+    var wordList = ["tree", "grass", "soil", "weeds", "rain", "thunder", "lightning", "flowers", "forrest"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Stores a single random word so we can populate the DOM.
@@ -81,6 +83,25 @@ function gameInit() {
             | playerKeyPress === 'u' | playerKeyPress === 'v' | playerKeyPress === 'w' | playerKeyPress === 'x'
             | playerKeyPress === 'y' | playerKeyPress === 'z') {
 
+            // Change hangmans hang state based on 'playerKeyPress'.
+            if (playerRemainingGuesses === 8) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-2.jpg";
+            } else if (playerRemainingGuesses === 7) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-3.jpg";
+            } else if (playerRemainingGuesses === 6) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-4.jpg";
+            } else if (playerRemainingGuesses === 5) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-5.jpg";
+            } else if (playerRemainingGuesses === 4) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-6.jpg";
+            } else if (playerRemainingGuesses === 3) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-7.jpg";
+            } else if (playerRemainingGuesses === 2) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-8.jpg";
+            } else if (playerRemainingGuesses === 1) {
+                document.getElementById("baseImg").src = "./assets/images/hang-states/try-9.jpg";
+            }
+
             // Default Keypress Sound.
             defaultPress.volume = 0.04; // MP3 Volume.
             defaultPress.play();
@@ -102,7 +123,7 @@ function gameInit() {
                     playerWon.textContent = playerGamesWon++;
 
                     // Reset game.
-                    playerRemainingGuesses = 10;
+                    playerRemainingGuesses = 8;
                     gameInit();
 
                     // Break statement execution.
@@ -112,12 +133,26 @@ function gameInit() {
                 if (playerRemainingGuesses === 0) {
                     // Let the player know they lost the game.
                     alert("Better luck next time, the word is '" + randomWord + "'!");
+                    // Disable Game.
+                    randomWordDisplay.style.display = "none";
                     // Add a loss to the counter.
                     playerLost.textContent = playerGamesLost++;
+                    // Show Dead Hangman.
+                    document.getElementById("baseImg").src = "./assets/images/hang-states/try-loss.jpg";
 
                     // Reset game.
-                    playerRemainingGuesses = 10;
-                    gameInit();
+                    setTimeout(function () {
+                        // Re-Enable Game.
+                        randomWordDisplay.style.display = "block";
+                        // Reset Hangman.
+                        document.getElementById("baseImg").src = "./assets/images/hang-states/try-default.jpg";
+                    }, 3000);
+
+                    // Reset Guesses
+                    playerRemainingGuesses = 8;
+
+                    // Re-Initialize Game.
+                    gameInit()
 
                     // Break statement execution.
                     break;
