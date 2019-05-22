@@ -34,7 +34,7 @@ function loadNewHangman() {
 
 // Initialize a new game.
 function gameInit() {
-    
+
     // Reset Used Letters.
     userLetterGuesses.textContent = "";
 
@@ -70,35 +70,10 @@ function gameInit() {
 
     // Log the players keyboard events.
     document.onkeyup = function (event) {
-        // Store the players latest keypress.
-        var playerKeyPress = event.key;
-        // Only track input from characters (A through Z).
-        if (playerKeyPress === 'a' | playerKeyPress === 'b' | playerKeyPress === 'c' | playerKeyPress === 'd'
-            | playerKeyPress === 'e' | playerKeyPress === 'f' | playerKeyPress === 'g' | playerKeyPress === 'h'
-            | playerKeyPress === 'i' | playerKeyPress === 'j' | playerKeyPress === 'k' | playerKeyPress === 'l'
-            | playerKeyPress === 'm' | playerKeyPress === 'n' | playerKeyPress === 'o' | playerKeyPress === 'p'
-            | playerKeyPress === 'q' | playerKeyPress === 'r' | playerKeyPress === 's' | playerKeyPress === 't'
-            | playerKeyPress === 'u' | playerKeyPress === 'v' | playerKeyPress === 'w' | playerKeyPress === 'x'
-            | playerKeyPress === 'y' | playerKeyPress === 'z') {
-
+        // Track only the players keypresses (A through Z; A = 65 || Z = 90).
+        if (event.keyCode >= 65 && event.keyCode <= 90) {
             // Change hangmans hang state based on 'playerKeyPress'.
-            if (playerRemainingGuesses === 8) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-2.jpg";
-            } else if (playerRemainingGuesses === 7) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-3.jpg";
-            } else if (playerRemainingGuesses === 6) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-4.jpg";
-            } else if (playerRemainingGuesses === 5) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-5.jpg";
-            } else if (playerRemainingGuesses === 4) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-6.jpg";
-            } else if (playerRemainingGuesses === 3) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-7.jpg";
-            } else if (playerRemainingGuesses === 2) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-8.jpg";
-            } else if (playerRemainingGuesses === 1) {
-                document.getElementById("baseImg").src = "./assets/images/hang-states/try-9.jpg";
-            }
+            document.getElementById("baseImg").src = "./assets/images/hang-states/try-guess-" + playerRemainingGuesses + ".jpg";
 
             // Default Keypress Sound.
             defaultPress.volume = 0.04; // MP3 Volume.
