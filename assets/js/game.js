@@ -34,14 +34,12 @@ function loadNewHangman() {
 
 // Initialize a new game.
 function gameInit() {
-
-
-
+    
     // Reset Used Letters.
     userLetterGuesses.textContent = "";
 
     // Create an array to hold the words the player must guess.
-    var wordList = ["tree", "grass", "soil", "weeds", "rain", "thunder", "lightning", "flowers", "forrest"];
+    var wordList = ["tree", "grass", "soil", "weeds", "rain", "ocean", "life", "flowers", "forrest"];
     // Randomize each word.
     var randomWord = wordList[Math.floor(Math.random() * wordList.length)];
     // Stores a single random word so we can populate the DOM.
@@ -128,8 +126,7 @@ function gameInit() {
                     document.getElementById("baseImg").src = "./assets/images/hang-states/try-default.jpg";
                     // Re-Initialize Game.
                     gameInit();
-
-                    // Break statement execution.
+                    // Break Statement Execution.
                     break;
                 }
                 // Loss Condition.
@@ -156,8 +153,7 @@ function gameInit() {
 
                     // Re-Initialize Game.
                     gameInit()
-
-                    // Break statement execution.
+                    // Break Statement Execution.
                     break;
                 }
             }
