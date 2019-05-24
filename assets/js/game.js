@@ -12,6 +12,7 @@ var playerRemainingGuesses = 8; // Player guesses remaining.
 var playerGamesLost = 1; // Games Lost.
 var playerGamesWon = 1; // Games Won.
 
+
 // Audio Files.
 var defaultPress = new Audio('assets/audio/keypress.mp3'); // Default Key Press.
 
@@ -70,6 +71,7 @@ function gameInit() {
 
     // Log the players keyboard events.
     document.onkeyup = function (event) {
+        var playerKeyPress = event.key;
         // Track only the players keypresses (A through Z; A = 65 || Z = 90).
         if (event.keyCode >= 65 && event.keyCode <= 90) {
             // Change hangmans hang state based on 'playerKeyPress'.
